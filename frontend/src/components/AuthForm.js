@@ -1,19 +1,45 @@
-import { useState } from 'react';
-import { Form } from 'react-router-dom';
+import {
+  Form,
+  Link,
+  useSearchParams,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 
-import classes from './AuthForm.module.css';
+import classes from "./AuthForm.module.css";
 
 function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [searchParams] = useSearchParams();
+  const isLogin = searchParams.get("mode") === "login";
+  const actionData = useActionData();
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
-  function switchAuthHandler() {
-    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
+  let submitBtnText = "";
+  if (isSubmitting) {
+    submitBtnText = "Submitting...";
+  } else if (isLogin) {
+    submitBtnText = "Login";
+  } else {
+    submitBtnText = "Create";
   }
 
   return (
     <>
       <Form method="post" className={classes.form}>
-        <h1>{isLogin ? 'Log in' : 'Create a new user'}</h1>
+        <h1>{isLogin ? "Log in" : "Create a new user"}</h1>
+        {actionData && actionData.message && (
+          <p style={{ textAlign: "center", color: "red" }}>
+            {actionData.message}
+          </p>
+        )}
+        {actionData && actionData.errors && (
+          <ul>
+            {Object.values(actionData.errors).map((err) => (
+              <li key={err}>{err}</li>
+            ))}
+          </ul>
+        )}
         <p>
           <label htmlFor="email">Email</label>
           <input id="email" type="email" name="email" required />
@@ -23,10 +49,10 @@ function AuthForm() {
           <input id="password" type="password" name="password" required />
         </p>
         <div className={classes.actions}>
-          <button onClick={switchAuthHandler} type="button">
-            {isLogin ? 'Create new user' : 'Login'}
-          </button>
-          <button>Save</button>
+          <Link to={`?mode=${isLogin ? "signup" : "login"}`} type="button">
+            {isLogin ? "Create new user" : "Login"}
+          </Link>
+          <button disabled={isSubmitting}>{submitBtnText}</button>
         </div>
       </Form>
     </>

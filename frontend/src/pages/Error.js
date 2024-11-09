@@ -1,5 +1,4 @@
 import { useRouteError } from 'react-router-dom';
-import MainNavigation from '../components/MainNavigation';
 
 import PageContent from '../components/PageContent';
 
@@ -9,7 +8,7 @@ function ErrorPage() {
   let title = 'An error occurred!';
   let message = 'Something went wrong!';
 
-  if (error.status === 500) {
+  if (error.status === 500 || error.status === 422) {
     message = error.data.message;
   }
 
@@ -20,7 +19,6 @@ function ErrorPage() {
 
   return (
     <>
-      <MainNavigation />
       <PageContent title={title}>
         <p>{message}</p>
       </PageContent>

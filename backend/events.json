@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"wewe","image":"https://cdn.encoreglobal.com/wp-content/uploads/sites/2/2020/10/13122712/Encore_EventType_TheatreConcertandSpecialEvents_4.jpg","date":"2024-11-24","description":"wewe","id":"03081108-6442-4650-8a52-eb11f2eb2bdb"}],"users":[{"email":"dmytro.skaliun@capgemini.com","password":"$2a$12$jn8w3zMYUAybqX7B/nRkiuC/MZI/deifZ5fc5xYq/J6BgMZRildca","id":"c6cd23c6-ba1e-4b7a-8e88-65c5e01cd52d"}]}
